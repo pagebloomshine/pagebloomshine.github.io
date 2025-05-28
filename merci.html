@@ -60,16 +60,10 @@
     <a href="index.html">← Retour à l’accueil</a>
   </div>
 
- <audio id="musique" autoplay loop>
+ <audio autoplay loop>
   <source src="bloomshine-melodie.mp3" type="audio/mpeg">
   Votre navigateur ne supporte pas la lecture audio.
 </audio>
-
-<script>
-  const audio = document.getElementById("musique");
-  audio.addEventListener('canplay', () => {
-    audio.currentTime = 19; // Commence à 19 secondes
-  });
   </script>
 </body>
 </html>
