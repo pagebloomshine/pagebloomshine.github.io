@@ -1,4 +1,75 @@
-<h1>🎉 Bravo !</h1>
-<p>Ton inscription au concours Bloomshine Talent est confirmée !</p>
-<p>Prépare-toi à faire briller ton talent sous le regard de Dieu et des hommes ✨</p>
-<p>📅 Rendez-vous le 27 juin 2025 pour la présélection</p>
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Merci pour votre inscription</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: url('arriere-plan.png') no-repeat center center fixed;
+      background-size: cover;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+    }
+
+    .message {
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 3rem;
+      border-radius: 12px;
+      max-width: 600px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+      margin-bottom: 1rem;
+      font-size: 2.5rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    a {
+      text-decoration: none;
+      color: white;
+      background-color: #5d3392;
+      padding: 10px 20px;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    a:hover {
+      background-color: #452670;
+    }
+  </style>
+</head>
+<body>
+  <div class="message">
+    <h1>🎉 Bravo !</h1>
+    <p>Ton inscription au concours <strong>Bloomshine Talent</strong> est confirmée !</p>
+    <p>Prépare-toi à faire briller ton talent sous le regard de Dieu et des hommes ✨</p>
+    <p>📅 Rendez-vous le <strong>27 juin 2025</strong> pour la présélection</p>
+    <a href="index.html">← Retour à l’accueil</a>
+  </div>
+
+ <audio id="musique" autoplay loop>
+  <source src="bloomshine-melodie.mp3" type="audio/mpeg">
+  Votre navigateur ne supporte pas la lecture audio.
+</audio>
+
+<script>
+  const audio = document.getElementById("musique");
+  audio.addEventListener('canplay', () => {
+    audio.currentTime = 19; // Commence à 19 secondes
+  });
+  </script>
+</body>
+</html>
