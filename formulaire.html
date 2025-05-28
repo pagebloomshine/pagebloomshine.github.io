@@ -7,15 +7,15 @@
   <title>Formulaire - Bloomshine Talent</title>
   <style>
     @font-face {
-  font-family: 'Belgan Aesthetic';
-  src: url('belgan-aesthetic.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
+      font-family: 'Belgan Aesthetic';
+      src: url('belgan-aesthetic.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
 
-h1, h2, h3 {
-  font-family: 'Belgan Aesthetic', sans-serif;
-}
+    h1, h2, h3 {
+      font-family: 'Belgan Aesthetic', sans-serif;
+    }
 
     body {
       background-image: url('arriere-plan.png');
@@ -27,21 +27,19 @@ h1, h2, h3 {
       font-family: Arial, sans-serif;
       color: #333;
     }
+
     .container {
-  max-width: 800px;
-  margin: auto;
-  background-color: rgba(255, 255, 255, 0.6); /* Blanc semi-transparent */
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      max-width: 800px;
+      margin: auto;
+      background-color: rgba(255, 255, 255, 0.6);
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
 
-  /* Effet flouté de l'arrière-plan */
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px); /* pour Safari */
-}
-
-
-     @media screen and (max-width: 768px) {
+    @media screen and (max-width: 768px) {
       .container {
         padding: 1rem;
         margin: 1rem;
@@ -51,15 +49,18 @@ h1, h2, h3 {
         background-attachment: scroll;
       }
     }
+
     h2 {
       text-align: center;
       color: #5d3392;
     }
+
     label {
       display: block;
       margin-top: 1rem;
       font-weight: bold;
     }
+
     input, select {
       width: 100%;
       padding: 10px;
@@ -68,10 +69,12 @@ h1, h2, h3 {
       border-radius: 5px;
       font-size: 1rem;
     }
+
     input[type="checkbox"], input[type="radio"] {
       width: auto;
       margin-right: 10px;
     }
+
     .member-block {
       border: 1px solid #ccc;
       border-radius: 8px;
@@ -79,6 +82,7 @@ h1, h2, h3 {
       margin-top: 1rem;
       background: #f9f9f9;
     }
+
     button {
       margin-top: 2rem;
       padding: 12px 20px;
@@ -90,6 +94,7 @@ h1, h2, h3 {
       width: 100%;
       font-size: 16px;
     }
+
     button:hover {
       background-color: #452670;
     }
@@ -99,8 +104,9 @@ h1, h2, h3 {
   <div class="container">
     <h2>Formulaire d'inscription</h2>
     <form action="https://formsubmit.co/bloomvasesdhonneurdoxa@gmail.com" method="POST" onsubmit="return validateForm()">
-    <input type="hidden" name="_next" value="https://pagebloomshine.github.io/merci.html">
+      <input type="hidden" name="_next" value="https://pagebloomshine.github.io/merci.html">
       <input type="hidden" name="_captcha" value="false">
+
       <label>Choix de discipline</label>
       <select name="discipline" id="discipline" onchange="updateParticipation()" required>
         <option value="">--Choisir--</option>
@@ -108,14 +114,17 @@ h1, h2, h3 {
         <option value="Rap">Rap</option>
         <option value="Danse">Danse</option>
       </select>
+
       <div id="participation-options">
         <label>Type de participation</label>
         <input type="radio" name="danse_type" value="Solo" id="solo" onclick="toggleMembers()"> Solo<br>
         <input type="radio" name="danse_type" value="Groupe" id="groupe" onclick="toggleMembers()"> Groupe<br>
       </div>
+
       <label>Nom du groupe (si groupe)</label>
       <input type="text" name="nom_groupe">
       <div id="member-container"></div>
+
       <label>Sexe du représentant</label>
       <select name="sexe" required>
         <option value="">--Choisir--</option>
@@ -130,26 +139,33 @@ h1, h2, h3 {
       <button type="submit">Envoyer l'inscription</button>
     </form>
   </div>
+
   <script>
-    function updateParticipation() {
-      const discipline = document.getElementById("discipline").value;
-      const solo = document.getElementById("solo");
-      const groupe = document.getElementById("groupe");
-      if (discipline === "Danse") {
-        solo.disabled = true;
-        solo.checked = false;
-        groupe.disabled = false;
-      } else {
-        solo.disabled = false;
-        groupe.disabled = false;
-      }
-      toggleMembers();
+   function updateParticipation() {
+  const discipline = document.getElementById("discipline").value;
+  const solo = document.getElementById("solo");
+  const groupe = document.getElementById("groupe");
+
+  if (discipline === "Danse") {
+    solo.checked = false;
+    solo.disabled = true;
+    groupe.checked = true;
+    groupe.disabled = false;
+  } else {
+    solo.checked = true;
+    solo.disabled = false;
+    groupe.checked = false;
+    groupe.disabled = true;
+  }
+  toggleMembers();
     }
+
     function toggleMembers() {
       const container = document.getElementById("member-container");
       const isGroup = document.getElementById("groupe").checked;
       const isSolo = document.getElementById("solo").checked;
       container.innerHTML = "";
+
       if (isGroup) {
         for (let i = 1; i <= 5; i++) {
           container.innerHTML += `
@@ -164,9 +180,20 @@ h1, h2, h3 {
                 <option value="Homme">Homme</option>
                 <option value="Femme">Femme</option>
               </select>
+              <label>Membre ${i} - Numéro de téléphone</label>
+              <input type="tel" name="membre_${i}_tel" required>
+              <label>Membre ${i} - Taille tee-shirt</label>
+              <select name="membre_${i}_taille" required>
+                <option value="">--Choisir--</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+              </select>
             </div>`;
         }
       }
+
       if (isSolo) {
         container.innerHTML += `
           <div class="member-block">
@@ -180,25 +207,35 @@ h1, h2, h3 {
               <option value="Homme">Homme</option>
               <option value="Femme">Femme</option>
             </select>
+            <label>Taille tee-shirt</label>
+            <select name="solo_taille" required>
+              <option value="">--Choisir--</option>
+              <option value="S">S</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
+              <option value="XL">XL</option>
+            </select>
           </div>`;
       }
     }
+
     function validateForm() {
       const discipline = document.getElementById("discipline").value;
       const groupe = document.getElementById("groupe").checked;
       const checkbox = document.getElementById('agreeRules');
+
       if (discipline === "Danse" && !groupe) {
         alert("Pour la discipline Danse, vous devez choisir 'Groupe' comme type de participation.");
         return false;
       }
+
       if (!checkbox.checked) {
         alert("Veuillez accepter le règlement du concours pour continuer.");
         return false;
       }
+
       return true;
     }
   </script>
-    </div>
-  </div>
 </body>
 </html>
