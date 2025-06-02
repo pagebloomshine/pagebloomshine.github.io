@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -141,23 +140,23 @@
   </div>
 
   <script>
-   function updateParticipation() {
-  const discipline = document.getElementById("discipline").value;
-  const solo = document.getElementById("solo");
-  const groupe = document.getElementById("groupe");
+    function updateParticipation() {
+      const discipline = document.getElementById("discipline").value;
+      const solo = document.getElementById("solo");
+      const groupe = document.getElementById("groupe");
 
-  if (discipline === "Danse") {
-    solo.checked = false;
-    solo.disabled = true;
-    groupe.checked = true;
-    groupe.disabled = false;
-  } else {
-    solo.checked = true;
-    solo.disabled = false;
-    groupe.checked = false;
-    groupe.disabled = true;
-  }
-  toggleMembers();
+      if (discipline === "Danse") {
+        solo.checked = false;
+        solo.disabled = true;
+        groupe.checked = true;
+        groupe.disabled = false;
+      } else {
+        solo.checked = true;
+        solo.disabled = false;
+        groupe.checked = false;
+        groupe.disabled = true;
+      }
+      toggleMembers();
     }
 
     function toggleMembers() {
@@ -167,7 +166,11 @@
       container.innerHTML = "";
 
       if (isGroup) {
-        for (let i = 1; i <= 5; i++) {
+        // Demander le nombre de membres
+        let memberCount = prompt("Combien de membres dans le groupe ? (minimum 2, maximum 5)", "2");
+        memberCount = Math.max(2, Math.min(5, memberCount)); // Limiter entre 2 et 5
+
+        for (let i = 1; i <= memberCount; i++) {
           container.innerHTML += `
             <div class="member-block">
               <label>Membre ${i} - Nom & prénom</label>
@@ -223,9 +226,15 @@
       const discipline = document.getElementById("discipline").value;
       const groupe = document.getElementById("groupe").checked;
       const checkbox = document.getElementById('agreeRules');
+      const memberCount = document.getElementById("member-container").childElementCount;
 
       if (discipline === "Danse" && !groupe) {
         alert("Pour la discipline Danse, vous devez choisir 'Groupe' comme type de participation.");
+        return false;
+      }
+
+      if (groupe && (memberCount < 2 || memberCount > 5)) {
+        alert("Le groupe doit avoir entre 2 et 5 membres.");
         return false;
       }
 
